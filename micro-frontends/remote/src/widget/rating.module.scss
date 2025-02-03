@@ -1,0 +1,65 @@
+.ratingCard {
+  min-height: 130px;
+  min-width: 366px;
+  border: 1px solid #d0d7dd;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.skeletonRating {
+  min-height: 130px;
+  min-width: 366px;
+  background: linear-gradient(90deg, #bbc1c3 25%, #d4d8da 50%, #bbc1c3 75%);
+  background-size: 200% 100%;
+  border-radius: 20px;
+  animation: shimmer 1.5s infinite;
+}
+
+.ratingSidebar {
+  width: 200px;
+  height: 80px;
+  margin-top: 30px;
+  background-color: #d0f3fb;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ratingSidebarInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.ratingSidebarInfoCount {
+  font-size: 14px;
+}
+
+.ratingSidebar.smWidgetSidebar {
+  height: 55px;
+  width: 55px;
+  border-radius: 50%;
+  background-color: #d0f3fb;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.ratingSidebarInfo.smWidgetSidebarInfo {
+  gap: 2px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
