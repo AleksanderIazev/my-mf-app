@@ -10,7 +10,7 @@ export const ModalLayout = ({
   return (
     <Routes>
       <Route path="/about" element={<ModalRating setOpen={setOpen} />} />
-      <Route path="/main" element={<ModalRating setOpen={setOpen} />} />
+      <Route path="/mine" element={<ModalRating setOpen={setOpen} />} />
       <Route path="/waiting" element={<ModalRating setOpen={setOpen} />} />
     </Routes>
   );

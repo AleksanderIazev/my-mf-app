@@ -36,16 +36,29 @@
   opacity: 0.7;
 }
 
-.errorWidgetSidebar {
-  width: 200px;
-  height: 80px;
-  margin-top: 30px;
-  background-color: #d0f3fb;
-  border-radius: 10px;
+.errorWrapper {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  font-size: 12px;
+}
+
+.errorRatingSidebar {
+  height: 55px;
+  width: 55px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  > svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 }
 
 .ratingCell {

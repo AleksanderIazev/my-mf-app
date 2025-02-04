@@ -47,12 +47,12 @@ export const ModalRating: React.FC<IModalRatingProps> = ({ setOpen }) => {
   }, [location.pathname]);
 
   // Закрытие модального окна
-  const handleClose = useCallback(() => {
+  const handleClose = () => {
     navigate("/");
     if (setOpen) {
       setOpen(false);
     }
-  }, [navigate, setOpen]);
+  };
 
   return (
     <div className={cn(styles.modalBackground)}>
