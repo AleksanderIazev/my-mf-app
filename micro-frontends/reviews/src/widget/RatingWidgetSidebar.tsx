@@ -4,6 +4,7 @@ import { useGetRatingDataQuery } from "../api/ratingApi";
 
 import { Button } from "@mui/material";
 import { Star } from "../icons/Star";
+import { useNavigate } from "react-router-dom";
 
 const cn = require("classnames");
 
@@ -13,8 +14,13 @@ export const RatingWidgetSidebar = ({
   isSidebarOpen?: Boolean;
 }) => {
   const { data } = useGetRatingDataQuery();
+  const navigate = useNavigate();
   const averageRating = data?.average;
   const reviewsCount = data?.reviewsCount;
+
+  const handleOpenModal = () => {
+    navigate("/about");
+  };
 
   return (
     <div
@@ -27,17 +33,20 @@ export const RatingWidgetSidebar = ({
         })}>
         <Star />
         <span>{averageRating || 0}</span>
-        {isSidebarOpen && (
-          <span className={cn(styles.ratingSidebarInfoCount)}>{`(${
-            reviewsCount || 0
-          } отзывов)`}</span>
-        )}
+        <span
+          className={cn(styles.ratingSidebarInfoCount, {
+            [styles.smRatingSidebarInfoCount]: !isSidebarOpen,
+          })}>{`(${reviewsCount || 0} отзывов)`}</span>
       </div>
-      {isSidebarOpen && (
-        <Button size="small" onClick={() => console.log("Модальное окно")}>
-          Перейти к отзывам
-        </Button>
-      )}
+
+      <Button
+        className={cn(styles.ratingSidebarBtn, {
+          [styles.smRatingSidebarBtn]: !isSidebarOpen,
+        })}
+        size="small"
+        onClick={handleOpenModal}>
+        Перейти
+      </Button>
     </div>
   );
 };

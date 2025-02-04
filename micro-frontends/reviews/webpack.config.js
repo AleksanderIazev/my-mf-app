@@ -1,5 +1,5 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
-const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin.js");
 const path = require("path");
 const Dotenv = require("dotenv-webpack");
 
@@ -72,11 +72,11 @@ module.exports = (_, argv) => ({
 
   plugins: [
     new ModuleFederationPlugin({
-      name: "remote",
+      name: "reviews",
       filename: "remoteEntry.js",
       remotes: {},
       exposes: {
-        "./RemoteContent": "./src/RemoteContent.tsx",
+        "./RemoteRatingWidget": "./src/RemoteRatingWidget.tsx",
         "./RemoteRatingBar": "./src/RemoteRatingBar.tsx",
       },
       shared: {

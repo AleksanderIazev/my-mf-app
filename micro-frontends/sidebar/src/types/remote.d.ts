@@ -2,7 +2,7 @@ interface IRemoteRatingBarProps {
   isSidebarOpen?: boolean;
 }
 
-declare module "remote/RemoteRatingBar" {
+declare module "reviews/RemoteRatingBar" {
   import { ComponentType } from "react";
   const RemoteRatingBar: ComponentType<IRemoteRatingBarProps>;
 

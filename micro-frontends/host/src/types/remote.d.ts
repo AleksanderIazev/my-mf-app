@@ -1,8 +1,8 @@
-declare module "remote/RemoteContent" {
+declare module "reviews/RemoteRatingWidget" {
   import { ComponentType } from "react";
-  const RemoteContent: ComponentType<{}>;
+  const RemoteRatingWidget: ComponentType<{}>;
 
-  export { RemoteContent };
+  export { RemoteRatingWidget };
 }
 
 declare module "sidebar/RemoteSidebar" {

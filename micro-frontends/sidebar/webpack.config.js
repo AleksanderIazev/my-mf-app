@@ -74,7 +74,7 @@ module.exports = (_, argv) => ({
     new ModuleFederationPlugin({
       name: "sidebar",
       filename: "remoteEntry.js",
-      remotes: { remote: "remote@http://localhost:3001/remoteEntry.js" },
+      remotes: { reviews: "reviews@http://localhost:3001/remoteEntry.js" },
       exposes: { "./RemoteSidebar": "./src/RemoteSidebar.tsx" },
       shared: {
         ...deps,

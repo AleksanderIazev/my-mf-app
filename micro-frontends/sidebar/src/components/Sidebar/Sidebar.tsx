@@ -7,7 +7,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 const cn = require("classnames");
 
 const RemoteRatingBar = React.lazy(() =>
-  import("remote/RemoteRatingBar")
+  import("reviews/RemoteRatingBar")
     .then((module) => ({ default: module.RemoteRatingBar }))
     .catch((error) => {
       console.error("Ошибка загрузки виджета", error);
@@ -32,9 +32,12 @@ export const Sidebar = () => {
       className={cn(styles.sidebarWrapper, {
         [styles.closeSidebar]: !isOpenSidebar,
       })}>
-      <Suspense fallback={<div className="skeleton-widget" />}>
-        <RemoteRatingBar isSidebarOpen={isOpenSidebar} />
-      </Suspense>
+      <div className={cn(styles.ratingCell)}>
+        <Suspense fallback={<div className="skeleton-widget" />}>
+          <RemoteRatingBar isSidebarOpen={isOpenSidebar} />
+        </Suspense>
+      </div>
+
       <button className={cn(styles.sidebarToggle)} onClick={toggleOpenSidebar}>
         {isOpenSidebar ? <ChevronRightIcon /> : <ChevronLeftIcon />}
       </button>

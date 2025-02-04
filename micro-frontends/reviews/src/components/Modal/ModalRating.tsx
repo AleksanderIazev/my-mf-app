@@ -21,12 +21,7 @@ export const ModalRating: React.FC<IModalRatingProps> = ({ setOpen }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  //   const activeTab = location.pathname.replace("/", "") || TAB_VALUE.ABOUT;
   const currentTab = location.pathname.split("/")[1] || TAB_VALUE.ABOUT;
-
-  //   if (!Object.values(TAB_VALUE).includes(activeTab)) {
-  //     navigate(`/${TAB_VALUE.ABOUT}`);
-  //   }
 
   const postData = () => {
     const uniqueIds = Array.from(new Set(viewedIds));
@@ -42,16 +37,12 @@ export const ModalRating: React.FC<IModalRatingProps> = ({ setOpen }) => {
   };
 
   useEffect(() => {
-    // Ваша логика при изменении вкладки
-    // Получаем текущую вкладку из URL
-
     if (viewedIds.length || likeDislikeIds.length) {
       if (viewedIds.length || likeDislikeIds.length) postData();
       setViewedIds([]);
       setLikeDislikeIds([]);
     }
 
-    // Дополнительная логика, если нужно
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname]);
 

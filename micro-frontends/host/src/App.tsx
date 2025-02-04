@@ -6,9 +6,9 @@ import "./index.scss";
 import { store } from "./store/store";
 import { WarningIcon } from "./icons/WarningIcon";
 
-const RemoteContent = React.lazy(() =>
-  import("remote/RemoteContent")
-    .then((module) => ({ default: module.RemoteContent }))
+const RemoteRatingWidget = React.lazy(() =>
+  import("reviews/RemoteRatingWidget")
+    .then((module) => ({ default: module.RemoteRatingWidget }))
     .catch((error) => {
       console.error("Ошибка загрузки виджета", error);
       return {
@@ -42,7 +42,7 @@ const App = () => (
     <BrowserRouter>
       <div className="container">
         <Suspense fallback={<div className="skeleton-widget" />}>
-          <RemoteContent />
+          <RemoteRatingWidget />
         </Suspense>
       </div>
       <Suspense fallback={<div>...Load</div>}>

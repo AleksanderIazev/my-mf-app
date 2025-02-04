@@ -19,7 +19,7 @@ export const Review: React.FC<IReviewProps> = ({
   const [showSpan, setShowSpan] = useState(!review.isViewed);
   const { ref, inView } = useInView({
     threshold: 1,
-    triggerOnce: true, // Срабатывает только один раз для каждого элемента
+    triggerOnce: true,
   });
 
   useEffect(() => {

@@ -17,8 +17,6 @@ export const LikeDislike: React.FC<ILikeDislikeProps> = ({
   handleLike,
   handleDislike,
 }) => {
-  // Определяем текущее состояние для reviewId
-
   return (
     <div style={{ display: "flex" }}>
       <span

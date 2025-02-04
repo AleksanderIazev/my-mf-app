@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.scss";
-import { RemoteContent } from "./RemoteContent";
+import { RemoteRatingWidget } from "./RemoteRatingWidget";
 import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "./store/store";
@@ -9,7 +9,7 @@ import { RemoteRatingBar } from "./RemoteRatingBar";
 
 const App = () => (
   <div className="container">
-    <RemoteContent />
+    <RemoteRatingWidget />
     <RemoteRatingBar />
   </div>
 );
