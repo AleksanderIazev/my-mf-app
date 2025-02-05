@@ -1,10 +1,10 @@
 import React from "react";
-import { RatingServices } from "./widget/RatingServices";
+import { RatingWidget } from "./widget/RatingWidget";
 
 export const RemoteRatingWidget = () => {
   return (
     <div>
-      <RatingServices />
+      <RatingWidget />
     </div>
   );
 };

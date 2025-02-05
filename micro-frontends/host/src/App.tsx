@@ -38,22 +38,26 @@ const RemoteSidebar = React.lazy(() =>
 );
 
 const App = () => (
-  <Provider store={store}>
-    <BrowserRouter>
-      <div className="container">
-        <Suspense fallback={<div className="skeleton-widget" />}>
-          <RemoteRatingWidget />
-        </Suspense>
-      </div>
-      <Suspense fallback={<div>...Load</div>}>
-        <RemoteSidebar />
+  <>
+    <div className="container">
+      <Suspense fallback={<div className="skeleton-widget" />}>
+        <RemoteRatingWidget />
       </Suspense>
-    </BrowserRouter>
-  </Provider>
+    </div>
+    <Suspense fallback={<div>...Load</div>}>
+      <RemoteSidebar />
+    </Suspense>
+  </>
 );
 
 const rootElement = document.getElementById("app");
 if (!rootElement) throw new Error("Failed to find the root element");
 
 const root = ReactDOM.createRoot(rootElement as HTMLElement);
-root.render(<App />);
+root.render(
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>
+);

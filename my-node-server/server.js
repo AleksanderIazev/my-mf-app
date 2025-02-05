@@ -1,9 +1,10 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const ratingData = require("./mockRatingData");
-const listData = require("./mockListData");
-const statisticsData = require("./mockStatistics");
+const ratingData = require("./data/mockRatingData");
+// const listData = require("./data/mockListData");
+const statisticsData = require("./data/mockStatistics");
+const listNewData = require("./data/mockNewListData");
 
 const app = express();
 const PORT = 5000;
@@ -18,7 +19,7 @@ app.get("/api/rating", (req, res) => {
 });
 
 app.get("/api/list", (req, res) => {
-  res.status(200).json(listData);
+  res.status(200).json(listNewData);
 });
 
 app.get("/api/statistics", (req, res) => {

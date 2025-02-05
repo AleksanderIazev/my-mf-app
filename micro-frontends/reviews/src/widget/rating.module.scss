@@ -12,7 +12,7 @@
 .ratingSidebar {
   width: 200px;
   height: 80px;
-  background-color: #d0f3fb;
+  background-color: #ecfcff;
   border-radius: 10px;
   padding-left: 10px;
   display: flex;
@@ -41,12 +41,13 @@
   height: 55px;
   width: 55px;
   border-radius: 50%;
-  background-color: #d0f3fb;
+  background-color: #ecfcff;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   padding-left: 0;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .ratingSidebarBtn {
@@ -74,6 +75,15 @@
 .skeletonRating {
   min-height: 130px;
   min-width: 366px;
+  background: linear-gradient(90deg, #bbc1c3 25%, #d4d8da 50%, #bbc1c3 75%);
+  background-size: 200% 100%;
+  border-radius: 20px;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeletonSidebarRating {
+  min-height: 200px;
+  min-width: 80px;
   background: linear-gradient(90deg, #bbc1c3 25%, #d4d8da 50%, #bbc1c3 75%);
   background-size: 200% 100%;
   border-radius: 20px;

@@ -2,9 +2,15 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { LikeDislike } from "../LikeDislike/LikeDislike";
+import styles from "./review.module.scss";
+import { IPartialReview } from "../../models/models";
+import { Rating } from "@mui/material";
+import { formattedDate } from "../../utils/utils";
+
+const cn = require("classnames");
 
 interface IReviewProps {
-  review: any;
+  review: IPartialReview;
   onInView: any;
   likeDislikeIds: any;
   setLikeDislikeIds: any;
@@ -29,7 +35,7 @@ export const Review: React.FC<IReviewProps> = ({
 
       timer = setTimeout(() => {
         setShowSpan(false);
-      }, 500);
+      }, 800);
     }
 
     return () => {
@@ -80,38 +86,30 @@ export const Review: React.FC<IReviewProps> = ({
     });
   };
   return (
-    <div
-      style={{
-        borderBottom: "1px solid black",
-        height: "200px",
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        width: "600px",
-      }}>
+    <div className={cn(styles.reviewContainer)}>
+      <div className={cn(styles.reviewStarsRow)}>
+        <Rating name="read-only" value={review.assessment} readOnly />
+        <span>
+          {review.publicationDateTime &&
+            formattedDate(review.publicationDateTime)}
+        </span>
+      </div>
       <p>
         {review.text}
         {showSpan && !review.isViewed && (
-          <span
-            ref={ref}
-            style={{
-              border: "1px solid orange",
-              backgroundColor: "orange",
-              borderRadius: "20px",
-              fontSize: "12px",
-              padding: "2px 10px",
-              marginLeft: "10px",
-            }}>
+          <span ref={ref} className={cn(styles.notificationTag)}>
             Новый
           </span>
         )}
       </p>
-      <LikeDislike
-        isLiked={isLiked}
-        isDisliked={isDisliked}
-        handleLike={handleLike}
-        handleDislike={handleDislike}
-      />
+      <div>
+        <LikeDislike
+          isLiked={isLiked}
+          isDisliked={isDisliked}
+          handleLike={handleLike}
+          handleDislike={handleDislike}
+        />
+      </div>
     </div>
   );
 };

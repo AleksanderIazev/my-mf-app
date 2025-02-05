@@ -1,6 +1,5 @@
 import styles from "./ratingBar.module.scss";
 import { Button } from "@mui/material";
-
 import React from "react";
 import { Star } from "../../icons/Star";
 

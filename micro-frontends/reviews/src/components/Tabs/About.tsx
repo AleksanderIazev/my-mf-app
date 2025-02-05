@@ -42,7 +42,7 @@ export const About: React.FC<IAboutProps> = ({
       const uniqueIds = Array.from(new Set(viewedIds));
       const jsonData = JSON.stringify({
         viewedIds: uniqueIds,
-        likeDislikeIds: likeDislikeIds,
+        viewType: "about",
       });
 
       navigator.sendBeacon(url, jsonData);

@@ -13,7 +13,7 @@ export const RatingWidgetSidebar = ({
 }: {
   isSidebarOpen?: Boolean;
 }) => {
-  const { data } = useGetRatingDataQuery();
+  const { data, isLoading } = useGetRatingDataQuery();
   const navigate = useNavigate();
   const averageRating = data?.average;
   const reviewsCount = data?.reviewsCount;
@@ -22,31 +22,42 @@ export const RatingWidgetSidebar = ({
     navigate("/about");
   };
 
-  return (
-    <div
-      className={cn(styles.ratingSidebar, {
-        [styles.smWidgetSidebar]: !isSidebarOpen,
-      })}>
-      <div
-        className={cn(styles.ratingSidebarInfo, {
-          [styles.smWidgetSidebarInfo]: !isSidebarOpen,
-        })}>
-        <Star />
-        <span>{averageRating || 0}</span>
-        <span
-          className={cn(styles.ratingSidebarInfoCount, {
-            [styles.smRatingSidebarInfoCount]: !isSidebarOpen,
-          })}>{`(${reviewsCount || 0} отзывов)`}</span>
-      </div>
+  const handleOpenModalSMWidget = () => {
+    if (isSidebarOpen) return;
+    navigate("/about");
+  };
 
-      <Button
-        className={cn(styles.ratingSidebarBtn, {
-          [styles.smRatingSidebarBtn]: !isSidebarOpen,
-        })}
-        size="small"
-        onClick={handleOpenModal}>
-        Перейти
-      </Button>
-    </div>
+  return (
+    <>
+      {isLoading ? (
+        <div className={cn(styles.ratingSidebarBtn)} />
+      ) : (
+        <div
+          className={cn(styles.ratingSidebar, {
+            [styles.smWidgetSidebar]: !isSidebarOpen,
+          })}>
+          <div
+            onClick={handleOpenModalSMWidget}
+            className={cn(styles.ratingSidebarInfo, {
+              [styles.smWidgetSidebarInfo]: !isSidebarOpen,
+            })}>
+            <Star />
+            <span>{averageRating || 0}</span>
+            <span
+              className={cn(styles.ratingSidebarInfoCount, {
+                [styles.smRatingSidebarInfoCount]: !isSidebarOpen,
+              })}>{`(${reviewsCount || 0} отзывов)`}</span>
+          </div>
+          <Button
+            className={cn(styles.ratingSidebarBtn, {
+              [styles.smRatingSidebarBtn]: !isSidebarOpen,
+            })}
+            size="small"
+            onClick={handleOpenModal}>
+            Перейти
+          </Button>
+        </div>
+      )}
+    </>
   );
 };

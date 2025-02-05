@@ -1,9 +1,10 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./modal.module.scss";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Tabs } from "./Tabs";
 import { TAB_VALUE, url } from "../../const/const";
+import CloseIcon from "@mui/icons-material/Close";
 import { About } from "../Tabs/About";
 
 const cn = require("classnames");
@@ -11,6 +12,12 @@ const cn = require("classnames");
 interface IModalRatingProps {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
+// удалить после создания всех вкладок
+const temporarySolutionStyleTabContent: React.CSSProperties = {
+  textAlign: "center",
+  minWidth: "1140px",
+};
 
 export const ModalRating: React.FC<IModalRatingProps> = ({ setOpen }) => {
   const [viewedIds, setViewedIds] = useState([]);
@@ -27,7 +34,8 @@ export const ModalRating: React.FC<IModalRatingProps> = ({ setOpen }) => {
     const uniqueIds = Array.from(new Set(viewedIds));
     const jsonData = JSON.stringify({
       viewedIds: uniqueIds,
-      likeDislikeData: likeDislikeIds,
+      // likeDislikeData: likeDislikeIds,
+      viewType: "about",
     });
 
     fetch(url, {
@@ -38,7 +46,7 @@ export const ModalRating: React.FC<IModalRatingProps> = ({ setOpen }) => {
 
   useEffect(() => {
     if (viewedIds.length || likeDislikeIds.length) {
-      if (viewedIds.length || likeDislikeIds.length) postData();
+      postData();
       setViewedIds([]);
       setLikeDislikeIds([]);
     }
@@ -59,8 +67,9 @@ export const ModalRating: React.FC<IModalRatingProps> = ({ setOpen }) => {
       <div className={cn(styles.modalContainer)}>
         <div className={cn(styles.modalHeader)}>
           <Tabs activeTab={currentTab} countNewReviews={countNewReviews} />
-
-          <button onClick={handleClose}>X</button>
+          <button onClick={handleClose}>
+            <CloseIcon />
+          </button>
         </div>
         <div className={cn(styles.modalContent)} key={currentTab}>
           {currentTab === TAB_VALUE.ABOUT && (
@@ -73,20 +82,10 @@ export const ModalRating: React.FC<IModalRatingProps> = ({ setOpen }) => {
             />
           )}
           {currentTab === TAB_VALUE.MINE && (
-            <p
-              style={{
-                textAlign: "center",
-                minWidth: "1140px",
-              }}>
-              Список моих отзывов
-            </p>
+            <p style={temporarySolutionStyleTabContent}>Список моих отзывов</p>
           )}
           {currentTab === TAB_VALUE.WAITING && (
-            <p
-              style={{
-                textAlign: "center",
-                minWidth: "1140px",
-              }}>
+            <p style={temporarySolutionStyleTabContent}>
               Отзывы, которые ждут оценки
             </p>
           )}

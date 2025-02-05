@@ -1,7 +1,5 @@
 import React from "react";
-
 import styles from "./modal.module.scss";
-
 import { TAB_VALUE } from "../../const/const";
 import { NavLink } from "react-router-dom";
 import { useGetRatingDataQuery } from "../../api/ratingApi";

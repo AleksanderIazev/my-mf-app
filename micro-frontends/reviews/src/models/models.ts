@@ -38,12 +38,49 @@ type TNotificationsInfo = Record<TNotificationsKeys, boolean>;
  */
 
 export interface IListData {
-  feedbacks: IFeedbacks[];
+  feedbacks: IPartialReview[];
+  numberOfElements: number;
   numberOfNewElements: number;
 }
 
-interface IFeedbacks {
-  text?: string;
-  id: number;
+// interface IFeedbacks {
+//   text?: string;
+//   id: number;
+//   isViewed: boolean;
+// }
+
+export type IPartialReview = Partial<IReview>;
+
+interface IReview {
+  id: string;
+  text: string;
+  assessment: number;
+  publicationDateTime: string;
+  canLeaveLike: boolean;
+  likeCount: string;
+  dislikeCount: string;
+  like: boolean;
+  dislike: boolean;
+  answer: IPartialAnswer;
+  editable: boolean;
   isViewed: boolean;
+}
+
+type IPartialAnswer = Partial<IAnswer>;
+
+interface IAnswer {
+  id: string;
+  fromUcpId: string;
+  fromInn: string;
+  fromName: string;
+  fromKpp: string;
+  text: string;
+  canLeaveLike: boolean;
+  likeCount: string;
+  dislikeCount: string;
+  like: boolean;
+  dislike: boolean;
+  moderationStatus: string;
+  moderationStatusName: string;
+  editable: boolean;
 }
