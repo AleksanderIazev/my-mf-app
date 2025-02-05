@@ -1,5 +1,7 @@
 import React from "react";
 import { RatingWidgetSidebar } from "./widget/RatingWidgetSidebar";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 interface IRemoteRatingBarProps {
   isSidebarOpen?: boolean;
@@ -9,8 +11,10 @@ export const RemoteRatingBar: React.FC<IRemoteRatingBarProps> = ({
   isSidebarOpen,
 }) => {
   return (
-    <div>
-      <RatingWidgetSidebar isSidebarOpen={isSidebarOpen} />
-    </div>
+    <>
+      <Provider store={store}>
+        <RatingWidgetSidebar isSidebarOpen={isSidebarOpen} />
+      </Provider>
+    </>
   );
 };

@@ -1,14 +1,16 @@
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
-import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
+
 import "./index.scss";
-import { store } from "./store/store";
+
 import { WarningIcon } from "./icons/WarningIcon";
+import { BrowserRouter } from "react-router-dom";
 
 const RemoteRatingWidget = React.lazy(() =>
   import("reviews/RemoteRatingWidget")
-    .then((module) => ({ default: module.RemoteRatingWidget }))
+    .then((module) => ({
+      default: module.RemoteRatingWidget,
+    }))
     .catch((error) => {
       console.error("Ошибка загрузки виджета", error);
       return {
@@ -21,7 +23,9 @@ const RemoteRatingWidget = React.lazy(() =>
 
 const RemoteSidebar = React.lazy(() =>
   import("sidebar/RemoteSidebar")
-    .then((module) => ({ default: module.RemoteSidebar }))
+    .then((module) => ({
+      default: module.RemoteSidebar,
+    }))
     .catch((error) => {
       console.error("Ошибка загрузки виджета", error);
       return {
@@ -36,7 +40,6 @@ const RemoteSidebar = React.lazy(() =>
       };
     })
 );
-
 const App = () => (
   <>
     <div className="container">
@@ -55,9 +58,7 @@ if (!rootElement) throw new Error("Failed to find the root element");
 
 const root = ReactDOM.createRoot(rootElement as HTMLElement);
 root.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  </Provider>
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
 );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { useState } from "react";
 import styles from "./sidebar.module.scss";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -37,10 +37,9 @@ export const Sidebar = () => {
         [styles.closeSidebar]: !isOpenSidebar,
       })}>
       <div className={cn(styles.ratingCell)}>
-        {/* <Suspense
-          fallback={<div>Загрузка</div>}> */}
-        <RemoteRatingBar isSidebarOpen={isOpenSidebar} />
-        {/* </Suspense> */}
+        <Suspense fallback={<div>Загрузка</div>}>
+          <RemoteRatingBar isSidebarOpen={isOpenSidebar} />
+        </Suspense>
       </div>
       <button className={cn(styles.sidebarToggle)} onClick={toggleOpenSidebar}>
         {isOpenSidebar ? <ChevronRightIcon /> : <ChevronLeftIcon />}

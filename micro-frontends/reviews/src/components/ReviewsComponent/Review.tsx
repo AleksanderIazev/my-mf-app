@@ -22,9 +22,10 @@ export const Review: React.FC<IReviewProps> = ({
   likeDislikeIds,
   setLikeDislikeIds,
 }) => {
-  const [showSpan, setShowSpan] = useState(!review.isViewed);
+  // можно будет потом вернуть если надо будет
+  const [, setShowSpan] = useState(!review.isViewed);
   const { ref, inView } = useInView({
-    threshold: 1,
+    threshold: 0.5,
     triggerOnce: true,
   });
 
@@ -44,7 +45,7 @@ export const Review: React.FC<IReviewProps> = ({
   }, [inView, review, onInView]);
 
   const currentItem = likeDislikeIds?.find(
-    (item: { id: any }) => item.id === review.id
+    (item: { id: string }) => item.id === review.id
   );
 
   const isLiked = currentItem?.like;
@@ -86,7 +87,7 @@ export const Review: React.FC<IReviewProps> = ({
     });
   };
   return (
-    <div className={cn(styles.reviewContainer)}>
+    <div className={cn(styles.reviewContainer)} ref={ref}>
       <div className={cn(styles.reviewStarsRow)}>
         <Rating name="read-only" value={review.assessment} readOnly />
         <span>
@@ -96,10 +97,8 @@ export const Review: React.FC<IReviewProps> = ({
       </div>
       <p>
         {review.text}
-        {showSpan && !review.isViewed && (
-          <span ref={ref} className={cn(styles.notificationTag)}>
-            Новый
-          </span>
+        {!review.isViewed && (
+          <span className={cn(styles.notificationTag)}>Новый</span>
         )}
       </p>
       <div>

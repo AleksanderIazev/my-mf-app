@@ -56,6 +56,7 @@ export const ModalRating: React.FC<IModalRatingProps> = ({ setOpen }) => {
 
   // Закрытие модального окна
   const handleClose = () => {
+    postData();
     navigate("/");
     if (setOpen) {
       setOpen(false);
