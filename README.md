@@ -3,3 +3,7 @@
    npx nodemon server.js
 3. Запуск хоста npm start (npm run start)
 4. Далее запускаем каждый сервис отдельно. (npm start или npm run start)
+
+!!! 5. Запустить контейнеры и одновременно пересобрать образы
+docker compose up --build
+Затем в приложении Docker Desktop можно отключать и включать нужные сервисы внутри checkback.

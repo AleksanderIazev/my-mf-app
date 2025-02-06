@@ -14,14 +14,14 @@ services:
   host:
     build: ./micro-frontends/host
     ports:
-      - "3003:3000"
+      - "3000:3000"
     depends_on:
       - backend
 
   reviews:
     build: ./micro-frontends/reviews
     ports:
-      - "3004:3001"
+      - "3001:3001"
     depends_on:
       - backend
       - host
@@ -29,7 +29,7 @@ services:
   sidebar:
     build: ./micro-frontends/sidebar
     ports:
-      - "3005:3002"
+      - "3002:3002"
     depends_on:
       - backend
       - host
