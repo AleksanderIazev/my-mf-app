@@ -2,10 +2,11 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
 import { LikeDislike } from "../LikeDislike/LikeDislike";
-import styles from "./review.module.scss";
 import { IPartialReview } from "../../models/models";
 import { Rating } from "@mui/material";
 import { formattedDate } from "../../utils/utils";
+
+import styles from "./review.module.scss";
 
 const cn = require("classnames");
 
@@ -90,7 +91,7 @@ export const Review: React.FC<IReviewProps> = ({
     <div className={cn(styles.reviewContainer)} ref={ref}>
       <div className={cn(styles.reviewStarsRow)}>
         <Rating name="read-only" value={review.assessment} readOnly />
-        <span>
+        <span style={{ fontSize: "14px" }}>
           {review.publicationDateTime &&
             formattedDate(review.publicationDateTime)}
         </span>

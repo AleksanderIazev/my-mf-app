@@ -1,10 +1,8 @@
 import React, { Suspense } from "react";
 import ReactDOM from "react-dom/client";
-
-import "./index.scss";
-
 import { WarningIcon } from "./icons/WarningIcon";
 import { BrowserRouter } from "react-router-dom";
+import "./index.scss";
 
 const RemoteRatingWidget = React.lazy(() =>
   import("reviews/RemoteRatingWidget")

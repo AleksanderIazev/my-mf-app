@@ -1,17 +1,16 @@
-import React, { Suspense } from "react";
-import { useState } from "react";
-import styles from "./sidebar.module.scss";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import { AlertError } from "../../icons/AlertError";
+import React, { Suspense, useState } from 'react';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import styles from './sidebar.module.scss';
+import { AlertError } from '../../icons/AlertError';
 
-const cn = require("classnames");
+const cn = require('classnames');
 
 const RemoteRatingBar = React.lazy(() =>
-  import("reviews/RemoteRatingBar")
+  import('reviews/RemoteRatingBar')
     .then((module) => ({ default: module.RemoteRatingBar }))
     .catch((error) => {
-      console.error("Ошибка загрузки виджета", error);
+      console.error('Ошибка загрузки виджета', error);
       return {
         default: () => (
           <div className={cn(styles.errorWrapper)}>
@@ -22,10 +21,10 @@ const RemoteRatingBar = React.lazy(() =>
           </div>
         ),
       };
-    })
+    }),
 );
 
-export const Sidebar = () => {
+export function Sidebar() {
   const [isOpenSidebar, setIsOpenSidebar] = useState(true);
 
   const toggleOpenSidebar = () => {
@@ -35,15 +34,20 @@ export const Sidebar = () => {
     <div
       className={cn(styles.sidebarWrapper, {
         [styles.closeSidebar]: !isOpenSidebar,
-      })}>
+      })}
+    >
       <div className={cn(styles.ratingCell)}>
         <Suspense fallback={<div>Загрузка</div>}>
           <RemoteRatingBar isSidebarOpen={isOpenSidebar} />
         </Suspense>
       </div>
-      <button className={cn(styles.sidebarToggle)} onClick={toggleOpenSidebar}>
+      <button
+        type="button"
+        className={cn(styles.sidebarToggle)}
+        onClick={toggleOpenSidebar}
+      >
         {isOpenSidebar ? <ChevronRightIcon /> : <ChevronLeftIcon />}
       </button>
     </div>
   );
-};
+}

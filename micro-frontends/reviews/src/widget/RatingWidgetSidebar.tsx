@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./rating.module.scss";
 import { useGetRatingDataQuery } from "../api/ratingApi";
 
@@ -13,10 +13,18 @@ export const RatingWidgetSidebar = ({
 }: {
   isSidebarOpen?: Boolean;
 }) => {
-  const { data, isLoading } = useGetRatingDataQuery();
+  const { data, isLoading, refetch } = useGetRatingDataQuery();
   const navigate = useNavigate();
   const averageRating = data?.average;
   const reviewsCount = data?.reviewsCount;
+  const showNotification =
+    data?.notificationInfo?.aboutNew ||
+    data?.notificationInfo?.mineNew ||
+    data?.notificationInfo?.waitingNew;
+
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
 
   const handleOpenModal = () => {
     navigate("/about");
@@ -46,6 +54,8 @@ export const RatingWidgetSidebar = ({
             <span
               className={cn(styles.ratingSidebarInfoCount, {
                 [styles.smRatingSidebarInfoCount]: !isSidebarOpen,
+                [styles.showCircle]: showNotification,
+                [styles.showCircleSM]: !isSidebarOpen && showNotification,
               })}>{`(${reviewsCount || 0} отзывов)`}</span>
           </div>
           <Button

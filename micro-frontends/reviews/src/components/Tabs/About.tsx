@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-
 import { url } from "../../const/const";
 import { useGetListDataQuery } from "../../api/listApi";
 import { useGetStatisticsDataQuery } from "../../api/statisticsApi";
@@ -21,13 +20,25 @@ export const About: React.FC<IAboutProps> = ({
   setLikeDislikeIds,
   setCountNewReviews,
 }) => {
-  const { data: listData, isLoading: listLoading } = useGetListDataQuery();
-  const { data: statisticsData, isLoading: statisticsLoading } =
-    useGetStatisticsDataQuery();
+  const {
+    data: listData,
+    isLoading: listLoading,
+    refetch: refetchListData,
+  } = useGetListDataQuery();
+  const {
+    data: statisticsData,
+    isLoading: statisticsLoading,
+    refetch: refetchStatisticsData,
+  } = useGetStatisticsDataQuery();
   const feedbacks = listData?.feedbacks || [];
   const numberNewEl = listData?.numberOfNewElements || 0;
 
   const uniqueViewedIds = Array.from(new Set(viewedIds));
+
+  useEffect(() => {
+    refetchListData();
+    refetchStatisticsData();
+  }, [refetchListData]);
 
   useEffect(() => {
     if (!listLoading && setCountNewReviews) {

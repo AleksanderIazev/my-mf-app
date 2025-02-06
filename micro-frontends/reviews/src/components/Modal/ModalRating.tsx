@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactElement } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styles from "./modal.module.scss";
 import { useEffect, useState } from "react";
@@ -6,18 +6,14 @@ import { Tabs } from "./Tabs";
 import { TAB_VALUE, url } from "../../const/const";
 import CloseIcon from "@mui/icons-material/Close";
 import { About } from "../Tabs/About";
+import { Waiting } from "../Tabs/Waiting";
+import { Mine } from "../Tabs/Mine";
 
 const cn = require("classnames");
 
 interface IModalRatingProps {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
-// удалить после создания всех вкладок
-const temporarySolutionStyleTabContent: React.CSSProperties = {
-  textAlign: "center",
-  minWidth: "1140px",
-};
 
 export const ModalRating: React.FC<IModalRatingProps> = ({ setOpen }) => {
   const [viewedIds, setViewedIds] = useState([]);
@@ -63,6 +59,20 @@ export const ModalRating: React.FC<IModalRatingProps> = ({ setOpen }) => {
     }
   };
 
+  const TAB_MAP: Record<string, ReactElement> = {
+    about: (
+      <About
+        viewedIds={viewedIds}
+        setViewedIds={setViewedIds}
+        likeDislikeIds={likeDislikeIds}
+        setLikeDislikeIds={setLikeDislikeIds}
+        setCountNewReviews={setCountNewReviews}
+      />
+    ),
+    mine: <Mine />,
+    waiting: <Waiting />,
+  };
+
   return (
     <div className={cn(styles.modalBackground)}>
       <div className={cn(styles.modalContainer)}>
@@ -73,23 +83,7 @@ export const ModalRating: React.FC<IModalRatingProps> = ({ setOpen }) => {
           </button>
         </div>
         <div className={cn(styles.modalContent)} key={currentTab}>
-          {currentTab === TAB_VALUE.ABOUT && (
-            <About
-              viewedIds={viewedIds}
-              setViewedIds={setViewedIds}
-              likeDislikeIds={likeDislikeIds}
-              setLikeDislikeIds={setLikeDislikeIds}
-              setCountNewReviews={setCountNewReviews}
-            />
-          )}
-          {currentTab === TAB_VALUE.MINE && (
-            <p style={temporarySolutionStyleTabContent}>Список моих отзывов</p>
-          )}
-          {currentTab === TAB_VALUE.WAITING && (
-            <p style={temporarySolutionStyleTabContent}>
-              Отзывы, которые ждут оценки
-            </p>
-          )}
+          {TAB_MAP[currentTab]}
         </div>
       </div>
     </div>

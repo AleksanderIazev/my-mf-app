@@ -5,8 +5,11 @@ const ratingData = require("./data/mockRatingData");
 // const listData = require("./data/mockListData");
 const statisticsData = require("./data/mockStatistics");
 const listNewData = require("./data/mockNewListData");
+const waitingData = require("./data/mockWaitingData");
+const mineListData = require("./data/mockMineListData");
 
 const app = express();
+app.use(express.json());
 const PORT = 5000;
 
 // Middleware
@@ -20,6 +23,14 @@ app.get("/api/rating", (req, res) => {
 
 app.get("/api/list", (req, res) => {
   res.status(200).json(listNewData);
+});
+
+app.get("/api/mine-list", (req, res) => {
+  res.status(200).json(mineListData);
+});
+
+app.get("/api/waiting-list", (req, res) => {
+  res.status(200).json(waitingData);
 });
 
 app.get("/api/statistics", (req, res) => {

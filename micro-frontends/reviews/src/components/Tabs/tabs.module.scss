@@ -1,0 +1,19 @@
+.tableButton {
+  position: relative;
+  text-decoration: none;
+  line-height: 20px;
+  color: #000;
+  border: 1px solid #eee;
+  text-align: center;
+  font-size: 13px;
+  border-radius: 20px;
+  padding: 5px 15px;
+  cursor: pointer;
+  background-color: #ecfcff;
+  transition: opacity 0.2s ease;
+}
+
+.tableButton:hover {
+  border: 1px solid #d0d7dd;
+  opacity: 0.7;
+}

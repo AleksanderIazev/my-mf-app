@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  backend:
+    build: ./my-node-server
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./my-node-server:/app
+      - /app/node_modules
+    environment:
+      - NODE_ENV=development
+
+  host:
+    build: ./micro-frontends/host
+    ports:
+      - "3003:3000"
+    depends_on:
+      - backend
+
+  reviews:
+    build: ./micro-frontends/reviews
+    ports:
+      - "3004:3001"
+    depends_on:
+      - backend
+      - host
+
+  sidebar:
+    build: ./micro-frontends/sidebar
+    ports:
+      - "3005:3002"
+    depends_on:
+      - backend
+      - host
+      - reviews

@@ -31,13 +31,38 @@
   width: 150px;
   transition: gap 0.4s ease, width 0.4s ease;
 }
-
 .ratingSidebarInfoCount {
   font-size: 14px;
+  position: relative;
   transition: font-size 0.2s ease;
 }
 
+.showCircle::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -12px;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  background-color: orange;
+  border: none;
+}
+
+.showCircleSM::after {
+  content: "";
+  position: absolute;
+  top: -25px;
+  right: 20px;
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  background-color: orange;
+  border: none;
+}
+
 .ratingSidebar.smWidgetSidebar {
+  position: relative;
   height: 55px;
   width: 55px;
   border-radius: 50%;
@@ -78,7 +103,7 @@
   background: linear-gradient(90deg, #bbc1c3 25%, #d4d8da 50%, #bbc1c3 75%);
   background-size: 200% 100%;
   border-radius: 20px;
-  animation: shimmer 1.5s infinite;
+  animation: shimmer 0.5s infinite;
 }
 
 .skeletonSidebarRating {

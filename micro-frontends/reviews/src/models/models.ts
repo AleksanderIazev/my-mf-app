@@ -84,3 +84,47 @@ interface IAnswer {
   moderationStatusName: string;
   editable: boolean;
 }
+
+/**
+ * Описание приходящих данных с waiting-list
+ */
+
+export interface IWaitingData {
+  waitingList: IWaitingElement[];
+  numberOfElements: number;
+  numberOfNewElements: number;
+}
+
+interface IWaitingElement {
+  name: string;
+  id: number | string;
+  isViewed: false;
+  inn?: number;
+  kpp?: number;
+}
+
+/**
+ * Интерфейс приходящих данных (мои отзывы)
+ */
+
+export interface IMineListData {
+  mineList: TMineElementPartial[];
+}
+
+export type TMineElementPartial = Partial<IMineElement>;
+
+export interface IMineElement {
+  name: "Компания 666";
+  id: "8ae414e1-b722-4a3d-a0ec-437eef3d3e25";
+  text: "Отзыв на компанию 666";
+  assessment: 5;
+  publicationDateTime: "2024-07-19T00:11:00";
+  canLeaveLike: true;
+  likeCount: "1";
+  dislikeCount: "0";
+  like: true;
+  dislike: false;
+  editable: false;
+  isViewed: false;
+  answer: IPartialAnswer;
+}

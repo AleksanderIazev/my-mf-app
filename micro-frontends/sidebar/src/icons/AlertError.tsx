@@ -1,19 +1,20 @@
-import React from "react";
+import React from 'react';
 
-export const AlertError = () => {
+export function AlertError() {
   return (
     <svg
       width="55"
       height="55"
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 55 55">
+      viewBox="0 0 55 55"
+    >
       <circle
         cx="27.5"
         cy="27.5"
         r="25"
         fill="none"
         stroke="#ff0000"
-        stroke-width="3"
+        strokeWidth="3"
       />
 
       <line
@@ -22,8 +23,8 @@ export const AlertError = () => {
         x2="38"
         y2="38"
         stroke="#ff0000"
-        stroke-width="3"
-        stroke-linecap="round"
+        strokeWidth="3"
+        strokeLinecap="round"
       />
       <line
         x1="38"
@@ -31,9 +32,9 @@ export const AlertError = () => {
         x2="17"
         y2="38"
         stroke="#ff0000"
-        stroke-width="3"
-        stroke-linecap="round"
+        strokeWidth="3"
+        strokeLinecap="round"
       />
     </svg>
   );
-};
+}
